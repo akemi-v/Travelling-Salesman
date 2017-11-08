@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		1844CC2A1FB0B37000A01A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC291FB0B37000A01A76 /* AppDelegate.swift */; };
-		1844CC2C1FB0B37000A01A76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC2B1FB0B37000A01A76 /* ViewController.swift */; };
 		1844CC2F1FB0B37000A01A76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1844CC2D1FB0B37000A01A76 /* Main.storyboard */; };
 		1844CC321FB0B37000A01A76 /* Travelling_Salesman.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC301FB0B37000A01A76 /* Travelling_Salesman.xcdatamodeld */; };
 		1844CC341FB0B37000A01A76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1844CC331FB0B37000A01A76 /* Assets.xcassets */; };
 		1844CC371FB0B37000A01A76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1844CC351FB0B37000A01A76 /* LaunchScreen.storyboard */; };
+		1844CC481FB0B64D00A01A76 /* ProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */; };
+		1844CC4C1FB0B66100A01A76 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1844CC261FB0B37000A01A76 /* Travelling Salesman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Travelling Salesman.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1844CC291FB0B37000A01A76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1844CC2B1FB0B37000A01A76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1844CC2E1FB0B37000A01A76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1844CC311FB0B37000A01A76 /* Travelling_Salesman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Travelling_Salesman.xcdatamodel; sourceTree = "<group>"; };
 		1844CC331FB0B37000A01A76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1844CC361FB0B37000A01A76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1844CC381FB0B37000A01A76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemViewController.swift; sourceTree = "<group>"; };
+		1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				1844CC291FB0B37000A01A76 /* AppDelegate.swift */,
-				1844CC2B1FB0B37000A01A76 /* ViewController.swift */,
+				1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */,
+				1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */,
 				1844CC2D1FB0B37000A01A76 /* Main.storyboard */,
 				1844CC331FB0B37000A01A76 /* Assets.xcassets */,
 				1844CC351FB0B37000A01A76 /* LaunchScreen.storyboard */,
@@ -140,8 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1844CC321FB0B37000A01A76 /* Travelling_Salesman.xcdatamodeld in Sources */,
-				1844CC2C1FB0B37000A01A76 /* ViewController.swift in Sources */,
+				1844CC481FB0B64D00A01A76 /* ProblemViewController.swift in Sources */,
 				1844CC2A1FB0B37000A01A76 /* AppDelegate.swift in Sources */,
+				1844CC4C1FB0B66100A01A76 /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
