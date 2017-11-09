@@ -18,9 +18,11 @@ class ProblemViewController: UIViewController {
     
     @IBOutlet weak var matrixView: UIView!
     
-    let maxCost : UInt32 = 100
     let minNumberOfCities : Int = 1
     let maxNumberOfCities : Int = 10
+    
+    var matrix : Matrix?
+    var cellLabels : [MatrixCellLabel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +43,13 @@ class ProblemViewController: UIViewController {
                 wrongNumberOfCitites()
                 return
         }
+        
+        clearMatrix()
+        self.matrix = Matrix(cols: numberOfCities, rows: numberOfCities)
+        showMatrix()
     }
     
     @IBAction func calculateCheapestPath(_ sender: UIButton) {
-    }
-    
-    func randomCost() -> Int {
-        return Int(arc4random_uniform(maxCost) + 1)
     }
     
     func wrongNumberOfCitites() {
@@ -56,6 +58,33 @@ class ProblemViewController: UIViewController {
         alertMessageController.addAction(okAction)
         DispatchQueue.main.async {
             self.present(alertMessageController, animated: true, completion: nil)
+        }
+    }
+    
+    func showMatrix() {
+        guard let colNumber = self.matrix?.cols, let rowNumber = self.matrix?.rows else { return }
+        let cellLabelSize = self.matrixView.frame.width / CGFloat(colNumber)
+        
+        for row in 0..<rowNumber {
+            for col in row..<colNumber {
+                guard let cell = matrix?.cells[row][col] else { return }
+                let cellLabel : MatrixCellLabel = MatrixCellLabel(cell: cell, cellSize: cellLabelSize)
+                cellLabel.text = String(cell.cost)
+                cellLabel.contentMode = .center
+                self.matrixView.addSubview(cellLabel)
+                
+                guard let symcell = matrix?.cells[col][row] else { return }
+                let symcellLabel : MatrixCellLabel = MatrixCellLabel(cell: symcell, cellSize: cellLabelSize)
+                symcellLabel.text = String(symcell.cost)
+                symcellLabel.contentMode = .center
+                self.matrixView.addSubview(symcellLabel)
+            }
+        }
+    }
+    
+    func clearMatrix() {
+        for view in self.matrixView.subviews {
+            view.removeFromSuperview()
         }
     }
 }
