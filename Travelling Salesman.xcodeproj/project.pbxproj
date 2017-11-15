@@ -17,6 +17,7 @@
 		1844CC531FB3A50E00A01A76 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC521FB3A50E00A01A76 /* Matrix.swift */; };
 		1844CC551FB3A5CA00A01A76 /* MatrixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */; };
 		1844CC571FB3A67800A01A76 /* MatrixCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */; };
+		18F2595A1FBCD6D500696055 /* SideLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F259591FBCD6D500696055 /* SideLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1844CC521FB3A50E00A01A76 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCell.swift; sourceTree = "<group>"; };
 		1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCellLabel.swift; sourceTree = "<group>"; };
+		18F259591FBCD6D500696055 /* SideLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +66,9 @@
 		1844CC281FB0B37000A01A76 /* Travelling Salesman */ = {
 			isa = PBXGroup;
 			children = (
+				18F259521FBCD5BA00696055 /* History */,
+				18F259511FBCD5AD00696055 /* Problem */,
 				1844CC291FB0B37000A01A76 /* AppDelegate.swift */,
-				1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */,
-				1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */,
-				1844CC521FB3A50E00A01A76 /* Matrix.swift */,
-				1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */,
-				1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */,
 				1844CC2D1FB0B37000A01A76 /* Main.storyboard */,
 				1844CC331FB0B37000A01A76 /* Assets.xcassets */,
 				1844CC351FB0B37000A01A76 /* LaunchScreen.storyboard */,
@@ -77,6 +76,74 @@
 				1844CC301FB0B37000A01A76 /* Travelling_Salesman.xcdatamodeld */,
 			);
 			path = "Travelling Salesman";
+			sourceTree = "<group>";
+		};
+		18F259511FBCD5AD00696055 /* Problem */ = {
+			isa = PBXGroup;
+			children = (
+				18F259581FBCD60800696055 /* Controller */,
+				18F259571FBCD5FE00696055 /* View */,
+				18F259561FBCD5F100696055 /* Model */,
+			);
+			path = Problem;
+			sourceTree = "<group>";
+		};
+		18F259521FBCD5BA00696055 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				18F259551FBCD5E800696055 /* Controller */,
+				18F259541FBCD5E300696055 /* View */,
+				18F259531FBCD5DE00696055 /* Model */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		18F259531FBCD5DE00696055 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18F259541FBCD5E300696055 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18F259551FBCD5E800696055 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18F259561FBCD5F100696055 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1844CC521FB3A50E00A01A76 /* Matrix.swift */,
+				1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18F259571FBCD5FE00696055 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */,
+				18F259591FBCD6D500696055 /* SideLabel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18F259581FBCD60800696055 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +223,7 @@
 				1844CC551FB3A5CA00A01A76 /* MatrixCell.swift in Sources */,
 				1844CC481FB0B64D00A01A76 /* ProblemViewController.swift in Sources */,
 				1844CC2A1FB0B37000A01A76 /* AppDelegate.swift in Sources */,
+				18F2595A1FBCD6D500696055 /* SideLabel.swift in Sources */,
 				1844CC4C1FB0B66100A01A76 /* HistoryViewController.swift in Sources */,
 				1844CC571FB3A67800A01A76 /* MatrixCellLabel.swift in Sources */,
 			);

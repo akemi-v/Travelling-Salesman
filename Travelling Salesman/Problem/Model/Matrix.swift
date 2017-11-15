@@ -9,13 +9,13 @@
 import Foundation
 
 class Matrix {
-    let cols : Int
     let rows : Int
+    let cols : Int
     var cells : [[MatrixCell]] = []
     
-    init(cols: Int, rows: Int) {
-        self.cols = cols
+    init(rows: Int, cols: Int) {
         self.rows = rows
+        self.cols = cols
         
         for row in 0..<rows {
             var cellsRow : [MatrixCell] = []
@@ -25,7 +25,6 @@ class Matrix {
                     let cell = MatrixCell(row: row, col: col)
                     cellsRow.append(cell)
                 } else {
-//                    let cell = self.cells[col][row].copy()
                     let cell = self.cells[col][row].symmetric()
                     cellsRow.append(cell)
                 }

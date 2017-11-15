@@ -45,14 +45,14 @@ class ProblemViewController: UIViewController {
         }
         
         clearMatrix()
-        self.matrix = Matrix(cols: numberOfCities, rows: numberOfCities)
+        self.matrix = Matrix(rows: numberOfCities, cols: numberOfCities)
         showMatrix()
     }
     
     @IBAction func calculateCheapestPath(_ sender: UIButton) {
     }
     
-    func wrongNumberOfCitites() {
+    private func wrongNumberOfCitites() {
         let alertMessageController = UIAlertController(title: "Неверное число городов", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ок", style: .default, handler: nil)
         alertMessageController.addAction(okAction)
@@ -61,30 +61,44 @@ class ProblemViewController: UIViewController {
         }
     }
     
-    func showMatrix() {
+    private func showMatrix() {
         guard let colNumber = self.matrix?.cols, let rowNumber = self.matrix?.rows else { return }
-        let cellLabelSize = self.matrixView.frame.width / CGFloat(colNumber)
-        
+        let squareLabelSize = self.matrixView.frame.width / CGFloat(colNumber + 1)
+        let cellLabelSize = CGSize(width: squareLabelSize, height: squareLabelSize)
+        showMatrixCells(colNumber: colNumber, rowNumber: rowNumber, cellLabelSize: cellLabelSize)
+        showSideCells(colNumber: colNumber, rowNumber: rowNumber, labelSize: cellLabelSize)
+    }
+    
+    private func clearMatrix() {
+        for view in self.matrixView.subviews {
+            view.removeFromSuperview()
+        }
+    }
+    
+    private func showMatrixCells(colNumber: Int, rowNumber: Int, cellLabelSize: CGSize) {
         for row in 0..<rowNumber {
-            for col in row..<colNumber {
+            for col in 0..<colNumber {
                 guard let cell = matrix?.cells[row][col] else { return }
                 let cellLabel : MatrixCellLabel = MatrixCellLabel(cell: cell, cellSize: cellLabelSize)
-                cellLabel.text = String(cell.cost)
-                cellLabel.contentMode = .center
+                cellLabel.configure(row: row, col: col)
                 self.matrixView.addSubview(cellLabel)
-                
-                guard let symcell = matrix?.cells[col][row] else { return }
-                let symcellLabel : MatrixCellLabel = MatrixCellLabel(cell: symcell, cellSize: cellLabelSize)
-                symcellLabel.text = String(symcell.cost)
-                symcellLabel.contentMode = .center
-                self.matrixView.addSubview(symcellLabel)
             }
         }
     }
     
-    func clearMatrix() {
-        for view in self.matrixView.subviews {
-            view.removeFromSuperview()
+    private func showSideCells(colNumber: Int, rowNumber: Int, labelSize: CGSize) {
+        
+        let cornerLabel = SideLabel(text: "-", row: 0, col: 0, labelSize: labelSize)
+        self.matrixView.addSubview(cornerLabel)
+        
+        for col in 1...colNumber {
+            let sideLabel = SideLabel(text: "C\(col)", row: 0, col: col, labelSize: labelSize)
+            self.matrixView.addSubview(sideLabel)
+        }
+        
+        for row in 1...rowNumber {
+            let sideLabel = SideLabel(text: "C\(row)", row: row, col: 0, labelSize: labelSize)
+            self.matrixView.addSubview(sideLabel)
         }
     }
 }
