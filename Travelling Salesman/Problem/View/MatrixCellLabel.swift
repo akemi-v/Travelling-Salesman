@@ -9,6 +9,7 @@
 import UIKit
 
 class MatrixCellLabel: UILabel {
+    
     var cell : MatrixCell
     let cellSize : CGSize
     

@@ -9,6 +9,7 @@
 import Foundation
 
 class Matrix {
+    
     let rows : Int
     let cols : Int
     var cells : [[MatrixCell]] = []

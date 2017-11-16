@@ -9,6 +9,7 @@
 import Foundation
 
 class MatrixCell {
+    
     let row : Int
     let col : Int
     var cost : Int = 0
@@ -29,7 +30,7 @@ class MatrixCell {
     }
     
     func symmetric() -> MatrixCell {
-        let symmetricCell = MatrixCell(row: self.col, col: self.row)
+        let symmetricCell = MatrixCell(row: col, col: row)
         symmetricCell.cost = self.cost
         return symmetricCell
     }
