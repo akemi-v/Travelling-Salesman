@@ -9,6 +9,13 @@
 import UIKit
 
 class HistoryViewController: UIViewController {
+    
+    var solutionService : ISolutionService!
+    
+    func setDependencies(solutionService: ISolutionService) {
+        self.solutionService = solutionService
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

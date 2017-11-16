@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Matrix {
+class Matrix : NSObject, NSCoding {
     
     let rows : Int
     let cols : Int
@@ -34,4 +34,24 @@ class Matrix {
             self.cells.append(cellsRow)
         }
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        guard let rows = aDecoder.decodeObject(forKey: "rows") as? Int32,
+            let cols = aDecoder.decodeObject(forKey: "cols") as? Int32,
+            let cells = aDecoder.decodeObject(forKey: "cells") as? [[MatrixCell]] else {
+                return nil
+        }
+        
+        self.rows = Int(rows)
+        self.cols = Int(cols)
+        self.cells = cells
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.rows, forKey: "rows")
+        aCoder.encode(self.cols, forKey: "cols")
+        aCoder.encode(self.cells, forKey: "cells")
+    }
+    
+    
 }

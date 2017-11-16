@@ -27,6 +27,12 @@ class ProblemViewController: UIViewController {
     
     var TSPSolver : TSPPathFinder?
     
+    var solutionService : ISolutionService!
+    
+    func setDependencies(solutionService: ISolutionService) {
+        self.solutionService = solutionService
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -74,7 +80,10 @@ class ProblemViewController: UIViewController {
             print("Cheapest path cannot be calculated")
             return
         }
-        let stringCheapestPath = cheapestPath.flatMap { "C" + String(describing: $0) }.joined(separator: " -> ")
+        let stringCheapestPath = cheapestPath.flatMap { "C" + String(describing: $0) }.joined(separator: " → ")
+        
+        let solutionModel = SolutionModel(matrix: matrix, cheapestPath: stringCheapestPath, cost: cost, date: Date())
+        saveSolution(solution: solutionModel)
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
@@ -90,6 +99,8 @@ class ProblemViewController: UIViewController {
             self.showMatrix()
         }
     }
+    
+    // MARK: - Private methods
     
     private func wrongNumberOfCitites() {
         let alertMessageController = UIAlertController(title: "Неверное число городов", message: nil, preferredStyle: .alert)
@@ -140,4 +151,33 @@ class ProblemViewController: UIViewController {
             matrixView.addSubview(sideLabel)
         }
     }
+    
+    private func saveSolution(solution: SolutionModel) {
+        let failure : (String?) -> () = prepareFailureAlert(activateSaving: { [weak self] in
+            self?.saveSolution(solution: solution) })
+        let saveCompletionHandler : (String?) -> Void = { error in
+            if error != nil {
+                failure(error)
+            }
+        }
+        solutionService.saveSolution(solution: solution, completionHandler: saveCompletionHandler)
+    }
+    
+    private func prepareFailureAlert(activateSaving: @escaping () -> ()) -> ((String?) -> ()) {
+        let failure = { [weak self] (error: String?) in
+            
+            let alertMessageController = UIAlertController(title: "Ошибка", message: error, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ок", style: .default)
+            let retryAction = UIAlertAction(title: "Повторить", style: .default, handler: { _ in
+                activateSaving()
+            })
+            alertMessageController.addAction(okAction)
+            alertMessageController.addAction(retryAction)
+            DispatchQueue.main.async {
+                self?.present(alertMessageController, animated: true, completion: nil)
+            }
+        }
+        return failure
+    }
+
 }
