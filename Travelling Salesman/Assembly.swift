@@ -30,14 +30,14 @@ class Assembly {
 
     }
     
-    func historyViewController() -> HistoryViewController {
+    func historyViewController() -> UINavigationController {
         let storyboard = UIStoryboard(name: "History", bundle: nil)
-        if let historyVC = storyboard.instantiateInitialViewController() as? HistoryViewController {
+        if let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController, let historyVC = navigationController.viewControllers.first as? HistoryViewController {
             historyVC.title = "История"
             historyVC.setDependencies(solutionService: solutionService())
-            return historyVC
+            return navigationController
         }
-        return HistoryViewController(nibName: nil, bundle: nil)
+        return UINavigationController()
     }
     
     // MARK: - Private methods

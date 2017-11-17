@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13241" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MatrixEntity" representedClassName="MatrixEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="cols" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="costs" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rows" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="solution" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TSPEntity" inverseName="matrix" inverseEntity="TSPEntity" syncable="YES"/>
+    </entity>
     <entity name="TSPEntity" representedClassName="TSPEntity" syncable="YES" codeGenerationType="class">
         <attribute name="cheapestPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="matrix" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="matrix" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MatrixEntity" inverseName="solution" inverseEntity="MatrixEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="TSPEntity" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="MatrixEntity" positionX="-63" positionY="18" width="128" height="120"/>
     </elements>
 </model>

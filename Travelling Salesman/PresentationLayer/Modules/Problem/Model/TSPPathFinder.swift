@@ -11,13 +11,7 @@ import Foundation
 class TSPPathFinder {
     
     let cities : [Any]
-//    let costs: [[Int]]
     let matrix : Matrix?
-    
-//    init(cities: [Any], costs: [[Int]]) {
-//        self.cities = cities
-//        self.costs = costs
-//    }
     
     init(matrix: Matrix) {
         self.matrix = matrix
@@ -33,13 +27,11 @@ class TSPPathFinder {
         for path in allCompletePaths {
             if path.count < 2 { continue }
             var cost = 0
-//            var last = path.first // we know there is one becuase of above line
             guard var last = path.first as? Int else { return nil }
-            for next in path[1..<path.count] { // add up all pair distances
+            for next in path[1..<path.count] {
                 guard let next = next as? Int,
                 let segmentCost = matrix?.cells[last][next].cost else { return nil }
                 cost += segmentCost
-//                cost += costs[last][next]
                 last = next
             }
             if cost < minCost {
@@ -50,6 +42,7 @@ class TSPPathFinder {
         return (solution: cheapestPath, cost: minCost)
     }
     
+    // Backtracking (поиск с возвратом)
     private func getAllPermutations<T>(arr: [T]) -> [[T]] {
         var permutations: [[T]] = []
         permute(arr: arr, left: 0, right: cities.count - 1, result: &permutations)

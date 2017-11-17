@@ -11,9 +11,9 @@ import CoreData
 
 extension TSPEntity {
 //    static func fetchRequestAllTSPEntities(model: NSManagedObjectModel) -> NSFetchRequest<TSPEntity> {
-//
+//        TSPEntity.fetchRequest()
 //    }
-//    
+    
     static func insertTSPEntity(in context: NSManagedObjectContext) -> TSPEntity? {
         
         if let solution = NSEntityDescription.insertNewObject(forEntityName: "TSPEntity", into: context) as? TSPEntity {

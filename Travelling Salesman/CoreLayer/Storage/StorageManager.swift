@@ -29,17 +29,71 @@ class StorageManager: NSObject, IStorageManager {
             return
         }
         
-        let tspSolution = TSPEntity.insertTSPEntity(in: context)
-        tspSolution?.matrix = solution.matrix
-        tspSolution?.cheapestPath = solution.cheapestPath
-        tspSolution?.date = solution.date
-        tspSolution?.cost = solution.cost
+        context.perform {
+            let tspSolution = TSPEntity.insertTSPEntity(in: context)
+            let matrixEntity = MatrixEntity.insertMatrixEntity(in: context)
+            matrixEntity?.rows = Int32(solution.matrix.rows)
+            matrixEntity?.cols = Int32(solution.matrix.cols)
+            
+            var costs: [[Int]] = []
+            for cellRow in solution.matrix.cells {
+                let costRow = cellRow.map({ (cell: MatrixCell) -> Int in
+                    return cell.cost
+                })
+                costs.append(costRow)
+            }
+            
+            matrixEntity?.costs = costs as NSArray
+            
+            tspSolution?.cheapestPath = solution.cheapestPath
+            tspSolution?.date = solution.date
+            tspSolution?.cost = solution.cost
+            tspSolution?.matrix = matrixEntity
+            
+            self.stack.performSave(context: context, completionHandler: completionHandler)
+        }
         
-        stack.performSave(context: context, completionHandler: completionHandler)
     }
     
     func loadSolutions(completionHandler: @escaping ([SolutionModel]?, String?) -> Void) {
         
+        var solutions: [SolutionModel] = []
+        
+        guard let context = stack.mainContext else {
+            print("Main context is not available")
+            completionHandler(nil, "Cannot load solutions")
+            return
+        }
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TSPEntity")
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            guard let tspResults = results as? [TSPEntity] else {
+                completionHandler(nil, "Cannot load solutions")
+                return
+            }
+            
+            
+            for result in tspResults {
+                guard let matrixEntity = result.matrix,
+                        let cheapestPath = result.cheapestPath,
+                        let date = result.date,
+                        let costs = matrixEntity.costs as? [[Int]] else {
+                            print("Cannot handle result")
+                            return
+                }
+                
+                let matrix = Matrix(rows: Int(matrixEntity.rows), cols: Int(matrixEntity.cols), costs: costs)
+                let solution = SolutionModel(matrix: matrix, cheapestPath: cheapestPath, cost: Int(result.cost), date: date)
+                solutions.append(solution)
+            }
+            
+            completionHandler(solutions, nil)
+        } catch {
+            print("Error fetching: \(error)")
+            completionHandler(nil, error.localizedDescription)
+        }
+
     }
     
     
@@ -70,26 +124,5 @@ class StorageManager: NSObject, IStorageManager {
 //        }
 //    }
 //
-//    func setOnlineConversation(userID: String, userName: String?) {
-//        guard let context = stack.saveContext else { return }
-//
-//        guard let user = User.findOrInsertUser(userId: userID, name: userName ?? "No name", in: context) else { return }
-//        user.name = userName
-//        user.isOnline = true
-//
-//        guard let conversation = Conversation.findOrInsertConversation(userId: userID, name: userName ?? "No name", in: context) else { return }
-//        conversation.participant = user
-//        conversation.name = userName
-//        conversation.isOnline = user.isOnline
-//        conversation.date = conversation.lastMessage?.date
-//        if conversation.date == nil {
-//            conversation.date = Date(timeIntervalSince1970: 0)
-//        }
-//
-//        user.conversations = conversation
-//
-//        stack.performSave(context: context, completionHandler: nil)
-//    }
-    
 }
 

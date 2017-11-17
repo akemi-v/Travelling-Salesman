@@ -42,6 +42,7 @@ class ProblemViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - IBActions
     
     @IBAction func updateMatrix(_ sender: UIButton) {
         
@@ -111,6 +112,8 @@ class ProblemViewController: UIViewController {
         }
     }
     
+    // MARK: - UI related
+    
     private func showMatrix() {
         guard let colNumber = matrix?.cols, let rowNumber = matrix?.rows else { return }
         let squareLabelSize = matrixView.frame.width / CGFloat(colNumber + 1)
@@ -152,8 +155,10 @@ class ProblemViewController: UIViewController {
         }
     }
     
+    // MARK: - Saving into storage
+    
     private func saveSolution(solution: SolutionModel) {
-        let failure : (String?) -> () = prepareFailureAlert(activateSaving: { [weak self] in
+        let failure : (String?) -> Void = prepareFailureAlert(activateSaving: { [weak self] in
             self?.saveSolution(solution: solution) })
         let saveCompletionHandler : (String?) -> Void = { error in
             if error != nil {
@@ -163,7 +168,7 @@ class ProblemViewController: UIViewController {
         solutionService.saveSolution(solution: solution, completionHandler: saveCompletionHandler)
     }
     
-    private func prepareFailureAlert(activateSaving: @escaping () -> ()) -> ((String?) -> ()) {
+    private func prepareFailureAlert(activateSaving: @escaping () -> Void) -> ((String?) -> Void) {
         let failure = { [weak self] (error: String?) in
             
             let alertMessageController = UIAlertController(title: "Ошибка", message: error, preferredStyle: .alert)
