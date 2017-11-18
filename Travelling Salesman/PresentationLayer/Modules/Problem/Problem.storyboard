@@ -24,7 +24,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gY-GV-ZEQ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество городов (max 10):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcK-MZ-GY6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Количество городов (max 10):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wcK-MZ-GY6">
                                                 <rect key="frame" x="8" y="8" width="273.5" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="9et-uv-k24"/>
@@ -33,8 +33,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khF-bS-1R6">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="khF-bS-1R6">
                                                 <rect key="frame" x="289.5" y="8" width="77.5" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="e9W-3X-xly"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -67,7 +70,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7s6-Wp-5Yh">
                                         <rect key="frame" x="0.0" y="112" width="375" height="423"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Матрица стоимостей:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uag-iA-AUv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Матрица стоимостей:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="uag-iA-AUv">
                                                 <rect key="frame" x="8" y="8" width="359" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="XAF-h9-dv0"/>
@@ -110,7 +113,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Itp-Wh-5Sf">
                                         <rect key="frame" x="0.0" y="535" width="375" height="112"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Наиболее дешевый путь:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYq-HD-h2g">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Наиболее дешевый путь:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DYq-HD-h2g">
                                                 <rect key="frame" x="8" y="8" width="359" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="G5R-Ag-9Hs"/>
@@ -119,13 +122,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUx-9b-Uzf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bUx-9b-Uzf">
                                                 <rect key="frame" x="8" y="60" width="359" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqx-YX-clZ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hqx-YX-clZ">
                                                 <rect key="frame" x="8" y="68" width="359" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -148,23 +151,30 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="k4Y-Cv-Vzc">
+                                <rect key="frame" x="177" y="333.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hcG-g5-WRN" firstAttribute="top" secondItem="ft2-r8-Vs1" secondAttribute="top" id="DwK-Uh-bjq"/>
+                            <constraint firstItem="k4Y-Cv-Vzc" firstAttribute="centerX" secondItem="ft2-r8-Vs1" secondAttribute="centerX" id="aKq-S9-X4p"/>
                             <constraint firstItem="ft2-r8-Vs1" firstAttribute="trailing" secondItem="hcG-g5-WRN" secondAttribute="trailing" id="aVT-0K-Zb4"/>
                             <constraint firstItem="hcG-g5-WRN" firstAttribute="leading" secondItem="ft2-r8-Vs1" secondAttribute="leading" id="lM2-6n-Cpb"/>
                             <constraint firstItem="ft2-r8-Vs1" firstAttribute="bottom" secondItem="hcG-g5-WRN" secondAttribute="bottom" id="p9p-z1-5cl"/>
+                            <constraint firstItem="k4Y-Cv-Vzc" firstAttribute="centerY" secondItem="ft2-r8-Vs1" secondAttribute="centerY" id="uwR-Zz-Rh2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ft2-r8-Vs1"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Задача" id="zQB-Fg-HYj"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="k4Y-Cv-Vzc" id="EWX-yA-5ec"/>
                         <outlet property="calculateCheapestPathButton" destination="9Et-x0-Rbx" id="nng-Wx-Wb4"/>
                         <outlet property="costLabel" destination="hqx-YX-clZ" id="Ruk-D4-KTb"/>
                         <outlet property="matrixView" destination="oXo-7P-1IX" id="tXP-Zd-eX6"/>
                         <outlet property="numberOfCitiesTextField" destination="khF-bS-1R6" id="bVs-NB-xjV"/>
                         <outlet property="pathLabel" destination="bUx-9b-Uzf" id="0y4-1U-zfA"/>
+                        <outlet property="stackView" destination="hcG-g5-WRN" id="58e-FQ-DEJ"/>
                         <outlet property="updateMatrixButton" destination="Xpi-86-H7h" id="ThN-lz-mvh"/>
                     </connections>
                 </viewController>

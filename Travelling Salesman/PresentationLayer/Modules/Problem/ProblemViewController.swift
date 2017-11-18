@@ -12,12 +12,15 @@ class ProblemViewController: UIViewController {
 
     @IBOutlet weak var updateMatrixButton: UIButton!
     @IBOutlet weak var calculateCheapestPathButton: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var numberOfCitiesTextField: UITextField!
     @IBOutlet weak var pathLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     
     @IBOutlet weak var matrixView: UIView!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let minNumberOfCities : Int = 1
     let maxNumberOfCities : Int = 10
@@ -35,6 +38,14 @@ class ProblemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.hidesWhenStopped = true
+        configureButtons()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.clearMatrix()
+        self.showMatrix()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,33 +82,45 @@ class ProblemViewController: UIViewController {
     
     @IBAction func calculateCheapestPath(_ sender: UIButton) {
         
+        activityIndicator.startAnimating()
+        self.stackView.alpha = 0.5
+        self.matrixView.subviews.forEach { $0.isHidden = true }
+        
         guard let matrix = matrix else {
             print("No available matrix")
             return
         }
         
         TSPSolver = TSPPathFinder(matrix: matrix)
-        guard let (cheapestPath, cost) = TSPSolver?.solveTSP() else {
-            print("Cheapest path cannot be calculated")
-            return
-        }
-        let stringCheapestPath = cheapestPath.flatMap { "C" + String(describing: $0) }.joined(separator: " → ")
         
-        let solutionModel = SolutionModel(matrix: matrix, cheapestPath: stringCheapestPath, cost: cost, date: Date())
-        saveSolution(solution: solutionModel)
-        
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        
-        DispatchQueue.main.async {
-            self.pathLabel.text = stringCheapestPath
-            self.costLabel.text = "Стоимость: \(cost)"
-            dispatchGroup.leave()
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            self.clearMatrix()
-            self.showMatrix()
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let (cheapestPath, cost) = self.TSPSolver?.solveTSP() else {
+                print("Cheapest path cannot be calculated")
+                return
+            }
+            
+            let stringCheapestPath = cheapestPath.flatMap { "C" + String(describing: $0) }.joined(separator: " → ")
+            
+            let solutionModel = SolutionModel(matrix: matrix, cheapestPath: stringCheapestPath, cost: cost, date: Date())
+            self.saveSolution(solution: solutionModel)
+            
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
+            
+            DispatchQueue.main.async {
+                self.stackView.alpha = 1.0
+                self.matrixView.subviews.forEach { $0.isHidden = false }
+                self.activityIndicator.stopAnimating()
+                self.pathLabel.text = stringCheapestPath
+                self.costLabel.text = "Стоимость: \(cost)"
+                dispatchGroup.leave()
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                self.clearMatrix()
+                self.showMatrix()
+            }
+
         }
     }
     
@@ -113,6 +136,26 @@ class ProblemViewController: UIViewController {
     }
     
     // MARK: - UI related
+    
+    private func configureButtons() {
+        let usedColor = UIColor(red: 99/255, green: 69/255, blue: 69/255, alpha: 1.0)
+        
+        updateMatrixButton.layer.masksToBounds = true
+        updateMatrixButton.layer.cornerRadius = 10
+        updateMatrixButton.layer.borderWidth = 1
+        updateMatrixButton.layer.borderColor = usedColor.cgColor
+        updateMatrixButton.setTitleColor(UIColor .black, for: .normal)
+        updateMatrixButton.backgroundColor = UIColor(red: 227/255, green: 193/255, blue: 194/255, alpha: 1.0)
+        
+        
+        calculateCheapestPathButton.layer.masksToBounds = true
+        calculateCheapestPathButton.layer.cornerRadius = 10
+        calculateCheapestPathButton.layer.borderWidth = 1
+        calculateCheapestPathButton.layer.borderColor = usedColor.cgColor
+        calculateCheapestPathButton.setTitleColor(UIColor .black, for: .normal)
+        calculateCheapestPathButton.backgroundColor = UIColor(red: 222/255, green: 209/255, blue: 177/255, alpha: 1.0)
+
+    }
     
     private func showMatrix() {
         guard let colNumber = matrix?.cols, let rowNumber = matrix?.rows else { return }
@@ -134,6 +177,8 @@ class ProblemViewController: UIViewController {
                 guard let cell = matrix?.cells[row][col] else { return }
                 let cellLabel : MatrixCellLabel = MatrixCellLabel(cell: cell, cellSize: cellLabelSize)
                 cellLabel.configure(row: row, col: col)
+                cellLabel.adjustsFontSizeToFitWidth = true
+                cellLabel.minimumScaleFactor = 0.1
                 matrixView.addSubview(cellLabel)
             }
         }
@@ -146,11 +191,15 @@ class ProblemViewController: UIViewController {
         
         for col in 1...colNumber {
             let sideLabel = SideLabel(text: "C\(col - 1)", row: 0, col: col, labelSize: labelSize)
+            sideLabel.adjustsFontSizeToFitWidth = true
+            sideLabel.minimumScaleFactor = 0.1
             matrixView.addSubview(sideLabel)
         }
         
         for row in 1...rowNumber {
             let sideLabel = SideLabel(text: "C\(row - 1)", row: row, col: 0, labelSize: labelSize)
+            sideLabel.adjustsFontSizeToFitWidth = true
+            sideLabel.minimumScaleFactor = 0.1
             matrixView.addSubview(sideLabel)
         }
     }

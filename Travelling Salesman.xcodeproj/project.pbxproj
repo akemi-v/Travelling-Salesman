@@ -20,6 +20,8 @@
 		1844CC551FB3A5CA00A01A76 /* MatrixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */; };
 		1844CC571FB3A67800A01A76 /* MatrixCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */; };
 		18579BD61FBF686F00D235F8 /* MatrixEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18579BD51FBF686F00D235F8 /* MatrixEntity.swift */; };
+		18579BD81FBF89FA00D235F8 /* SolutionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18579BD71FBF89FA00D235F8 /* SolutionViewController.swift */; };
+		18579BDF1FBF8AA000D235F8 /* Solution.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18579BDE1FBF8AA000D235F8 /* Solution.storyboard */; };
 		18F2595A1FBCD6D500696055 /* SideLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F259591FBCD6D500696055 /* SideLabel.swift */; };
 		18F2595C1FBCF0FD00696055 /* TSPPathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2595B1FBCF0FD00696055 /* TSPPathFinder.swift */; };
 		18F2595E1FBD99EB00696055 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2595D1FBD99EB00696055 /* CoreDataStack.swift */; };
@@ -45,6 +47,8 @@
 		1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCell.swift; sourceTree = "<group>"; };
 		1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixCellLabel.swift; sourceTree = "<group>"; };
 		18579BD51FBF686F00D235F8 /* MatrixEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixEntity.swift; sourceTree = "<group>"; };
+		18579BD71FBF89FA00D235F8 /* SolutionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolutionViewController.swift; sourceTree = "<group>"; };
+		18579BDE1FBF8AA000D235F8 /* Solution.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Solution.storyboard; sourceTree = "<group>"; };
 		18F259591FBCD6D500696055 /* SideLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideLabel.swift; sourceTree = "<group>"; };
 		18F2595B1FBCF0FD00696055 /* TSPPathFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSPPathFinder.swift; sourceTree = "<group>"; };
 		18F2595D1FBD99EB00696055 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -96,12 +100,40 @@
 			path = "Travelling Salesman";
 			sourceTree = "<group>";
 		};
+		18579BD91FBF8A0300D235F8 /* Solution */ = {
+			isa = PBXGroup;
+			children = (
+				18579BDE1FBF8AA000D235F8 /* Solution.storyboard */,
+				18579BD71FBF89FA00D235F8 /* SolutionViewController.swift */,
+			);
+			path = Solution;
+			sourceTree = "<group>";
+		};
+		18579BDD1FBF8A6000D235F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1844CC521FB3A50E00A01A76 /* Matrix.swift */,
+				1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */,
+				18F2595B1FBCF0FD00696055 /* TSPPathFinder.swift */,
+				18F2596B1FBDAA4300696055 /* SolutionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18579BE01FC080B000D235F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */,
+				18F259591FBCD6D500696055 /* SideLabel.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		18F259511FBCD5AD00696055 /* Problem */ = {
 			isa = PBXGroup;
 			children = (
-				18F259581FBCD60800696055 /* Controller */,
-				18F259571FBCD5FE00696055 /* View */,
-				18F259561FBCD5F100696055 /* Model */,
+				182C877E1FBDC6EB001E0BE5 /* Problem.storyboard */,
+				1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */,
 			);
 			path = Problem;
 			sourceTree = "<group>";
@@ -109,69 +141,18 @@
 		18F259521FBCD5BA00696055 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				18F259551FBCD5E800696055 /* Controller */,
-				18F259541FBCD5E300696055 /* View */,
-				18F259531FBCD5DE00696055 /* Model */,
-			);
-			path = History;
-			sourceTree = "<group>";
-		};
-		18F259531FBCD5DE00696055 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18F259541FBCD5E300696055 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */,
 				182C87801FBDC7A1001E0BE5 /* History.storyboard */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18F259551FBCD5E800696055 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1844CC4A1FB0B66100A01A76 /* HistoryViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		18F259561FBCD5F100696055 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1844CC521FB3A50E00A01A76 /* Matrix.swift */,
-				1844CC541FB3A5CA00A01A76 /* MatrixCell.swift */,
-				18F2595B1FBCF0FD00696055 /* TSPPathFinder.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18F259571FBCD5FE00696055 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1844CC561FB3A67800A01A76 /* MatrixCellLabel.swift */,
-				18F259591FBCD6D500696055 /* SideLabel.swift */,
-				182C877E1FBDC6EB001E0BE5 /* Problem.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18F259581FBCD60800696055 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1844CC461FB0B64D00A01A76 /* ProblemViewController.swift */,
-			);
-			path = Controller;
+			path = History;
 			sourceTree = "<group>";
 		};
 		18F259631FBDA57F00696055 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				18579BDD1FBF8A6000D235F8 /* Model */,
+				18579BE01FC080B000D235F8 /* View */,
 				18F259661FBDA5AC00696055 /* Modules */,
-				18F2596B1FBDAA4300696055 /* SolutionModel.swift */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -195,6 +176,7 @@
 		18F259661FBDA5AC00696055 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				18579BD91FBF8A0300D235F8 /* Solution */,
 				18F259511FBCD5AD00696055 /* Problem */,
 				18F259521FBCD5BA00696055 /* History */,
 			);
@@ -280,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18579BDF1FBF8AA000D235F8 /* Solution.storyboard in Resources */,
 				1844CC371FB0B37000A01A76 /* LaunchScreen.storyboard in Resources */,
 				1844CC341FB0B37000A01A76 /* Assets.xcassets in Resources */,
 				182C877F1FBDC6EB001E0BE5 /* Problem.storyboard in Resources */,
@@ -310,6 +293,7 @@
 				18F259621FBD9EC800696055 /* TSPEntity.swift in Sources */,
 				1844CC571FB3A67800A01A76 /* MatrixCellLabel.swift in Sources */,
 				18579BD61FBF686F00D235F8 /* MatrixEntity.swift in Sources */,
+				18579BD81FBF89FA00D235F8 /* SolutionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

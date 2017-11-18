@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         
         let problemVC = assembly.problemViewController()
-        problemVC.tabBarItem = UITabBarItem(title: "Задача", image: nil, selectedImage: nil)
+        problemVC.tabBarItem = UITabBarItem(title: "Задача", image: UIImage(named: "problem"), selectedImage: nil)
         
         let historyVC = assembly.historyViewController()
-        historyVC.tabBarItem = UITabBarItem(title: "История", image: nil, selectedImage: nil)
+        historyVC.tabBarItem = UITabBarItem(title: "История", image: UIImage(named: "history"), selectedImage: nil)
         
         tabBarController.setViewControllers([problemVC, historyVC], animated: true)
         window?.rootViewController = tabBarController

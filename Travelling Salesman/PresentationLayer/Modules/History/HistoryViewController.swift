@@ -27,7 +27,7 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateFormatter.dateFormat = "dd-MM-yyyy hh:mm:ss"
+        dateFormatter.dateFormat = "dd-MM-yyyy hh:mm:ss a"
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -93,18 +93,15 @@ class HistoryViewController: UIViewController {
 
 extension HistoryViewController : UITableViewDataSource {
     
-    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
-    {
+    func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
         return solutions.count
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
-    {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = "SolutionCellIdentifier"
         var cell : UITableViewCell
         
@@ -125,4 +122,14 @@ extension HistoryViewController : UITableViewDataSource {
 
 extension HistoryViewController : UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let solution: SolutionModel = solutions[indexPath.row]
+        let storyboard = UIStoryboard(name: "Solution", bundle: nil)
+        if let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController,
+            let solutionVC = navigationController.viewControllers.first as? SolutionViewController {
+            solutionVC.title = dateFormatter.string(from: solution.date as Date)
+            solutionVC.setModel(solution: solution)
+            self.present(navigationController, animated: true, completion: nil)
+        }
+    }
 }
